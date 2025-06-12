@@ -1,0 +1,61 @@
+rpc:
+  url: rpc_url # This can be in ENV or hardcoded
+  blocks:
+    blocksPerRequest: 20 # Small for old blocks
+    batchDelay: 2000 # Adjust
+  logs:
+    blocksPerRequest: 20
+    batchDelay: 2000
+  blockReceipts:
+    enabled: false
+    blocksPerRequest: 20
+    batchDelay: 2000
+  traces:
+    enabled: false
+    blocksPerRequest: 20
+    batchDelay: 2000
+
+log:
+  level: debug
+  prettify: true
+
+poller:
+  enabled: true
+  interval: 10000 # Slower polling for old blocks
+  blocksPerPoll: 200 # Adjust
+  startBlock: 0
+
+committer:
+  enabled: true
+  interval: 5000
+  blocksPerCommit: 50
+
+failureRecoverer:
+  enabled: true
+  interval: 30000
+  blocksPerRun: 10
+
+reorgHandler:
+  enabled: true # Disable for historical sync
+  interval: 5000
+  blocksPerScan: 10
+
+storage:
+  main:
+    clickhouse:
+      host: localhost
+      port: 9440
+      database: "default"
+      disableTLS: true
+  staging:
+    clickhouse:
+      host: localhost
+      port: 9440
+      database: "default"
+      disableTLS: true
+  orchestrator:
+    clickhouse:
+      host: localhost
+      port: 9440
+      database: "default"
+      disableTLS: true
